@@ -1,2 +1,2 @@
 # Namada-snapshot-automatic-synchronization
-A tool for automatically scheduling snapshot synchronization for Namada nodes
+A tool for automatically use snapshot synchronization for Namada rpc
