@@ -50,6 +50,6 @@ while true; do
 		echo "do not need download Snapshot"
 	fi
 
-	sleep 3600
+	sleep 14400
 done
 
