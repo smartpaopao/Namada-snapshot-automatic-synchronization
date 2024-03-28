@@ -6,9 +6,9 @@ port=${port:-"26657"}
 echo "Local RPC port set to: $port"
 
 
-echo "Please enter the number of blocks after which to automatically download a snapshot (default is 1000):"
+echo "Please enter the number of blocks after which to automatically download a snapshot (default is 500):"
 read threshold
-threshold=${threshold:-1000}
+threshold=${threshold:-500}
 
 
 while true; do
@@ -33,12 +33,12 @@ while true; do
 		echo "backward too much,need download Snapshot"
 
 		cd $HOME
-		wget -O snap_namada.tar https://testnet-files.itrocket.net/namada/snap_namada.tar
+		wget -O snap_namada.tar.gz https://snapshots.namada.posthuman.digital/data.tar.gz
 
 		sudo systemctl stop namadad
 		cp $HOME/.local/share/namada/shielded-expedition.88f17d1d14/cometbft/data/priv_validator_state.json $HOME/.local/share/namada/shielded-expedition.88f17d1d14/cometbft/priv_validator_state.json.backup
 		rm -rf $HOME/.local/share/namada/shielded-expedition.88f17d1d14/db $HOME/.local/share/namada/shielded-expedition.88f17d1d14/cometbft/data
-		tar -xvf $HOME/snap_namada.tar -C $HOME/.local/share/namada/shielded-expedition.88f17d1d14
+		tar -zxvf $HOME/snap_namada.tar.gz -C $HOME/.local/share/namada/shielded-expedition.88f17d1d14
 		mv $HOME/.local/share/namada/shielded-expedition.88f17d1d14/cometbft/priv_validator_state.json.backup $HOME/.local/share/namada/shielded-expedition.88f17d1d14/cometbft/data/priv_validator_state.json
 		rm -rf $HOME/snap_namada.tar
 		sudo systemctl restart namadad
